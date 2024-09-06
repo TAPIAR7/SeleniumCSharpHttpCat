@@ -25,16 +25,16 @@ namespace SeleniumCSharpHttpCat.Pages
         string tagNameUsage => "h2";
         IWebElement StatusCode => driver.FindElement(By.XPath(xPathStatusCodeElement));
         IWebElement h2Element => driver.FindElement(By.TagName(tagNameUsage));
+        WebDriverWait wait => new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
         public void ClickStatusCode()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             IWebElement element = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(xPathStatusCodeElement)));
             StatusCode.Click();
         }
 
         public string GetH2Text()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             IWebElement element = wait.Until(ExpectedConditions.ElementIsVisible(By.TagName(tagNameUsage)));
             return h2Element.Text;
         }

@@ -26,18 +26,17 @@ namespace SeleniumCSharpHttpCat.Pages
         IWebElement h1Element => driver.FindElement(By.XPath(xPathH1Element));
         
         IWebElement returnHome => driver.FindElement(By.XPath(xPathReturnToHome));
-        
+
+        WebDriverWait wait => new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
         public void ClickOnHome()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             IWebElement element = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(xPathReturnToHome)));
             returnHome.Click();
         }
 
         public string GetH1Text()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             IWebElement element = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(xPathH1Element)));
             return h1Element.Text;
         }
